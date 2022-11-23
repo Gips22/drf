@@ -7,7 +7,7 @@ from rest_framework.renderers import JSONRenderer
 from .models import FootballPlayers
 
 
-class FootballPlayersSerializer(serializers.HiddenField):
+class FootballPlayersSerializer(serializers.ModelSerializer):
     class Meta:
         model = FootballPlayers
         fields = ("title", "content", "club")  # для указания всех полей нужно указывать "__all__

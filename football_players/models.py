@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class FootballPlayers(models.Model):
     title = models.CharField(max_length=255)
@@ -8,6 +8,7 @@ class FootballPlayers(models.Model):
     time_update = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=True)
     club = models.ForeignKey('Club', on_delete=models.PROTECT, null=True)
+    user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)  # Cascade -  значит что при удалении пользователей будут удаляться все связанные с ним данные
 
     def __str__(self):
         return self.title

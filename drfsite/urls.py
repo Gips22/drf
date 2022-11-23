@@ -19,14 +19,23 @@ from django.urls import path, include
 from football_players.views import *
 from rest_framework import routers
 
-router = routers.SimpleRouter()  # создаем роутер для того чтобы не писать несколько path, а только одну
-router.register(r'football_players', FootballPlayersViewSet)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/', include(router.urls)),  # https://127.0.0.1:8000/api/v1/football_players/ тут это заменяет 2 роута: где мы смотрм список статей и где можем менять или удалять
-    # path('api/v1/womenlist/', WomenAPIList.as_view()),
-    # path('api/v1/womenlist/<int:pk>/', WomenAPIUpdate.as_view()),
-    # path('api/v1/womendetail/<int:pk>/', WomenAPIDetailView.as_view()),
+    path('api/v1/football/', FootballPlayersAPIList.as_view()),
+    path('api/v1/football/<int:pk>/', FootballPlayersAPIUpdate.as_view()),
+    path('api/v1/footballdelete/<int:pk>/', FootballPlayerAPIDestroy.as_view()),
 ]
+
+# urls для route и без permissions
+
+# router = routers.DefaultRouter()  # создаем роутер для того чтобы не писать несколько path, а только одну
+# router.register(r'football_players', FootballPlayersViewSet)
+
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('api/v1/', include(router.urls)),  # https://127.0.0.1:8000/api/v1/football_players/ тут это заменяет 2 роута: где мы смотрм список статей и где можем менять или удалять
+#
+# ]
