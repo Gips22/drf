@@ -23,6 +23,7 @@ from rest_framework import routers
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/v1/drf-auth/', include('rest_framework.urls')),  # Аутентификация по session id (session-based authentication)
     path('api/v1/football/', FootballPlayersAPIList.as_view()),
     path('api/v1/football/<int:pk>/', FootballPlayersAPIUpdate.as_view()),
     path('api/v1/footballdelete/<int:pk>/', FootballPlayerAPIDestroy.as_view()),
