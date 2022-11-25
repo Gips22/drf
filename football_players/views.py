@@ -21,7 +21,7 @@ class FootballPlayersAPIUpdate(generics.RetrieveUpdateAPIView):
     queryset = FootballPlayers.objects.all()
     serializer_class = FootballPlayersSerializer
     permission_classes = (IsAuthenticated, )  # просматривать могут только авторизованные пользователи
-    authentication_classes = (TokenAuthentication, )  # аутентификация по токенам только для этого view
+    # authentication_classes = (TokenAuthentication, )  # аутентификация по токенам только для этого view
 
 class FootballPlayerAPIDestroy(generics.RetrieveDestroyAPIView):
     queryset = FootballPlayers.objects.all()
