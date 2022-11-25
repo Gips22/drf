@@ -4,7 +4,8 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser, IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
 
 from .models import FootballPlayers, Club
 from .permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly
@@ -19,7 +20,8 @@ class FootballPlayersAPIList(generics.ListCreateAPIView):
 class FootballPlayersAPIUpdate(generics.RetrieveUpdateAPIView):
     queryset = FootballPlayers.objects.all()
     serializer_class = FootballPlayersSerializer
-    permission_classes = (IsOwnerOrReadOnly, )
+    permission_classes = (IsAuthenticated, )  # просматривать могут только авторизованные пользователи
+    authentication_classes = (TokenAuthentication, )  # аутентификация по токенам только для этого view
 
 class FootballPlayerAPIDestroy(generics.RetrieveDestroyAPIView):
     queryset = FootballPlayers.objects.all()

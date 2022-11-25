@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 
 from football_players.views import *
 from rest_framework import routers
@@ -27,6 +27,8 @@ urlpatterns = [
     path('api/v1/football/', FootballPlayersAPIList.as_view()),
     path('api/v1/football/<int:pk>/', FootballPlayersAPIUpdate.as_view()),
     path('api/v1/footballdelete/<int:pk>/', FootballPlayerAPIDestroy.as_view()),
+    path('api/v1/auth/', include('djoser.urls')),  # djoser
+    re_path(r'^auth/', include('djoser.urls.authtoken')),  # djoser. Строчка отвечает за авторизацию по токенам
 ]
 
 # urls для route и без permissions
