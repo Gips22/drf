@@ -8,12 +8,14 @@ from .serializers import FootballPlayersSerializer
 
 
 class FootballPlayersAPIListPagination(PageNumberPagination):  # класс пагинации только для FootballPlayersAPIList
+    """Класс для пагинации списка футболистов."""
     page_size = 3
     page_size_query_param = 'page_size'  # дополнительный параметр для ручного изменения числа записей-пишется в url ...&page_size=4 и будет 4 записи, а не 3.
     max_page_size = 10000
 
 
 class FootballPlayersAPIList(generics.ListCreateAPIView):
+    """ Класс для отображения списка футболистов и создания новых футболистов."""
     queryset = FootballPlayers.objects.all()
     serializer_class = FootballPlayersSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
@@ -21,6 +23,7 @@ class FootballPlayersAPIList(generics.ListCreateAPIView):
 
 
 class FootballPlayersAPIUpdate(generics.RetrieveUpdateAPIView):
+    """Класс для обновления информации о футболисте."""
     queryset = FootballPlayers.objects.all()
     serializer_class = FootballPlayersSerializer
     permission_classes = (IsAuthenticated,)  # просматривать могут только авторизованные пользователи
@@ -28,7 +31,7 @@ class FootballPlayersAPIUpdate(generics.RetrieveUpdateAPIView):
 
 
 class FootballPlayerAPIDestroy(generics.RetrieveDestroyAPIView):
+    """Класс для удаления футболиста из списка."""
     queryset = FootballPlayers.objects.all()
     serializer_class = FootballPlayersSerializer
     permission_classes = (IsAdminOrReadOnly,)
-
