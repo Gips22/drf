@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',  # эта строчка для djoser. Говорит о том, чтобы rest_framework использовал свою стандартную табл для авторизации по токенам
     'djoser',  # а тут уже подключаем прил djoser
+    'drf_yasg',  # для OpenApi документации
 ]
 
 MIDDLEWARE = [
